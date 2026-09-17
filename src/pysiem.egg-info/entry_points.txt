@@ -1,0 +1,2 @@
+[console_scripts]
+pysiem = pysiem.cli:main

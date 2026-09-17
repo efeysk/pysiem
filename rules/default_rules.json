@@ -1,0 +1,117 @@
+[
+  {
+    "id": "BRUTE-FORCE-SSH",
+    "name": "SSH Brute Force",
+    "description": "Ayni IP adresinden belirli sayida basarisiz SSH giris denemesi.",
+    "severity": "HIGH",
+    "threshold": 5,
+    "time_window": 300,
+    "mitre_technique": "T1110",
+    "rule_type": "brute_force",
+    "enabled": true,
+    "pattern": "",
+    "fields": {
+      "event_type": "auth_failure",
+      "protocol": "ssh"
+    }
+  },
+  {
+    "id": "MULTI-FAILED-AUTH",
+    "name": "Coklu Basarisiz Kimlik Dogrulama",
+    "description": "Ayni IP adresinden farkli kullanici adlariyla cok sayida basarisiz deneme.",
+    "severity": "HIGH",
+    "threshold": 3,
+    "time_window": 300,
+    "mitre_technique": "T1110.003",
+    "rule_type": "multi_failed_auth",
+    "enabled": true,
+    "pattern": "",
+    "fields": {
+      "event_type": "auth_failure"
+    }
+  },
+  {
+    "id": "FAILED-THEN-SUCCESS",
+    "name": "Basarisiz Denemeler Sonrasi Basarili Giris",
+    "description": "Basarisiz giris denemelerinden sonra basarili giris tespiti.",
+    "severity": "HIGH",
+    "threshold": 3,
+    "time_window": 300,
+    "mitre_technique": "T1110.001",
+    "rule_type": "failed_then_success",
+    "enabled": true,
+    "pattern": "",
+    "fields": {}
+  },
+  {
+    "id": "SUSPICIOUS-AUTH",
+    "name": "Supheli Kimlik Dogrulama Aktivitesi",
+    "description": "Supheli kullanici adlariyla yapilan basarisiz giris denemeleri.",
+    "severity": "MEDIUM",
+    "threshold": 2,
+    "time_window": 300,
+    "mitre_technique": "T1078",
+    "rule_type": "suspicious_auth",
+    "enabled": true,
+    "pattern": "",
+    "fields": {}
+  },
+  {
+    "id": "WEB-DIR-SCANNING",
+    "name": "Web Dizin Taramasi",
+    "description": "Ayni IP adresinden cok sayida farkli web yolu taranmasi.",
+    "severity": "MEDIUM",
+    "threshold": 20,
+    "time_window": 300,
+    "mitre_technique": "T1595.003",
+    "rule_type": "web_scanning",
+    "enabled": true,
+    "pattern": "",
+    "fields": {
+      "event_type": "web_request"
+    }
+  },
+  {
+    "id": "SQL-INJECTION",
+    "name": "SQL Injection Denemesi",
+    "description": "HTTP isteklerinde SQL injection deseni tespit edildi.",
+    "severity": "CRITICAL",
+    "threshold": 1,
+    "time_window": 60,
+    "mitre_technique": "T1190",
+    "rule_type": "pattern_match",
+    "enabled": true,
+    "pattern": "(?i)(union\\s+select|select\\s+\\*\\s+from|drop\\s+table|insert\\s+into|delete\\s+from|or\\s+1\\s*=\\s*1|'\\s*or\\s*')",
+    "fields": {
+      "event_type": "web_request"
+    }
+  },
+  {
+    "id": "CMD-INJECTION",
+    "name": "Command Injection Denemesi",
+    "description": "HTTP isteklerinde command injection deseni tespit edildi.",
+    "severity": "CRITICAL",
+    "threshold": 1,
+    "time_window": 60,
+    "mitre_technique": "T1059",
+    "rule_type": "pattern_match",
+    "enabled": true,
+    "pattern": "(?i)(;|\\|{1,2}|`|\\$\\()\\s*(ls|cat|id|whoami|uname|wget|curl|nc|bash|sh|python|perl|ruby)",
+    "fields": {
+      "event_type": "web_request"
+    }
+  },
+  {
+    "id": "PRIV-ESCALATION",
+    "name": "Supheli Yetki Yukseltme",
+    "description": "Sudo veya root ile yapilan supheli aktivite.",
+    "severity": "HIGH",
+    "threshold": 1,
+    "time_window": 60,
+    "mitre_technique": "T1068",
+    "rule_type": "privilege_escalation",
+    "enabled": true,
+    "pattern": "",
+    "fields": {}
+  }
+]
