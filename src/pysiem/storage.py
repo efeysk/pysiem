@@ -318,7 +318,7 @@ class DatabaseManager:
                 detection.description, detection.mitre_technique,
                 json.dumps(detection.related_events),
                 json.dumps(detection.details),
-                datetime.utcnow().isoformat(),
+                datetime.now(datetime.UTC).isoformat(),
             ),
         )
         self._conn.commit()

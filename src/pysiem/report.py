@@ -22,7 +22,7 @@ class ReportGenerator:
         stats = self.db.get_event_stats()
         report: dict[str, Any] = {
             "report_title": "PySIEM Guvenlik Raporu",
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.datetime.now(datetime.UTC).isoformat(),
             "summary": {
                 "total_events": stats.get("total_events", 0),
                 "total_alerts": stats.get("total_alerts", 0),
@@ -39,7 +39,7 @@ class ReportGenerator:
 
     def export_json(self, filename: str | None = None) -> Path:
         if filename is None:
-            ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            ts = datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")
             filename = f"report_{ts}.json"
         path = self.reports_path / filename
         report = self.generate_full_report()
@@ -50,7 +50,7 @@ class ReportGenerator:
 
     def export_csv_alerts(self, filename: str | None = None) -> Path:
         if filename is None:
-            ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            ts = datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")
             filename = f"alerts_{ts}.csv"
         path = self.reports_path / filename
         alerts = self.db.get_alerts(limit=10000)
@@ -71,7 +71,7 @@ class ReportGenerator:
 
     def export_csv_events(self, filename: str | None = None) -> Path:
         if filename is None:
-            ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            ts = datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")
             filename = f"events_{ts}.csv"
         path = self.reports_path / filename
         events = self.db.get_events(limit=10000)
