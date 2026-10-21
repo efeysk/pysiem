@@ -344,7 +344,7 @@ mini-siem/
 
 - Surucusuz log toplama (agent-based)
 - Daha fazla log kaynagi destegi (Windows Event Log, Firewall, IDS/IPS)
-- Gercek zamanli izleme dashboard'u
+- Gercek zamanli izleme dashboardu
 - E-posta bildirimleri
 - SIEM entegrasyonu (Syslog,CEF)
 - Daha gelismis correlation kurallari
